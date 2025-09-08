@@ -11,8 +11,7 @@ public class GameDemo {
         System.out.println("--- Base ---");
         base.move();
         base.attack();
-
-        // === YOUR TASKS ===
+                // === YOUR TASKS ===
         // 1) Create CharacterDecorator that implements Character and wraps another Character.
         // 2) Create concrete decorators, for example:
         //      - SpeedBoost (adds +N to speed, overrides getSpeed() and move() print)
@@ -35,5 +34,21 @@ public class GameDemo {
         // Character withoutAura = buffed; // removal by recomposition
         // withoutAura.move();
         // withoutAura.attack();
+
+        System.out.println("\n--- Buffed (Speed + Damage) ---");
+        Character buffed = new DamageBoost(new SpeedBoost(base, 3), 15);
+        buffed.move();
+        buffed.attack();
+
+        System.out.println("\n--- Shiny (GoldenAura + Buffs) ---");
+        Character shiny = new GoldenAura(buffed);
+        shiny.move();
+        shiny.attack();
+
+        System.out.println("\n--- Remove Aura (recomposition) ---
+");
+        Character withoutAura = buffed; // removal by recomposition
+        withoutAura.move();
+        withoutAura.attack();
     }
 }
